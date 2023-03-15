@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <title>New Sighting</title>
+</head>
+<header class="bg-success p-5">
+    <div class="display-3 text-bg-light text-center p-5">
+        Sasquatch Websighting
+        <h4>The truth is out there...</h4>
+    </div>
+</header>
+<body class="bg-light">
+    <div class="d-flex justify-content-center">
+    <div class="d-flex ">
+            
+        <form action="/process_new_sighting" method="POST" class="text-bg-light p-3">
+            
+            <h2 class="display-5 mb-5">Add New Sighting</h2>
+            <h5 class="text-center">Truth Seeker Logged In: {{session['first_name']}}</h5>
+            <div class="mb-3">
+                <label for="location" class="form-label">Location:</label>
+                <input type="text" class="form-control" name="location" placeholder="location">
+            </div>
+            <div>   
+                <label for="date_seen">Date of Sighting:</label>
+                <input type="date" id="date_seen" value="date_seen" name="date_seen">
+            </div>
+            <div class="mb-3">
+                <label for="num_sasquatches" class="form-label mt-3">Number of Sasquatches:</label>
+                <input type="text" class="form-control" name="num_sasquatches" placeholder="number of sasquatches">
+            </div>
+            <div class="mb-3">
+                <label for="what_happened" class="form-label mt-3">What Happened:</label> 
+                <textarea class="form-control" name="what_happened"  placeholder="Please describe the sighting"rows="3"></textarea>
+              </div>
+            
+            <button type="submit" class="m-4 btn btn-success ">Add sighting</button>
+        </form>
+        
+    </div>
+    <div>
+        <a class="text-light btn btn-success m-3" href="/dashboard">Dashboard</a>
+        <a class="text-light btn btn-dark m-3" href="/logout">Logout</a>
+    </div>
+    </div>
+</body>
+</html>

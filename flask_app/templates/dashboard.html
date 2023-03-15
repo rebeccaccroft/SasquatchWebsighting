@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <title>Dashboard</title>
+</head>
+<header class="bg-success p-5">
+    <div class="display-3 text-bg-light text-center p-5">
+        Sasquatch Websighting
+        <h4>The truth is out there...</h4>
+
+    </div>
+</header>
+<body class="bg-light">
+  <h1 class="display-4 mb-5 mt-3 ml-3 text-center">Reported Sightings</h1>
+  <h5 class="text-center">Truth Seeker Logged In: {{logged_in_user.first_name}}</h5>
+  <div class="d-flex justify-content-center">
+
+    <a class="text-light btn btn-success m-3" href="/add_new_sighting">Report A Sighting</a>
+    <a class="text-light btn btn-dark m-3" href="/logout">Logout</a>
+  </div>
+      <div class="wrapper_for_display justify-content-center">
+        <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example bg-light p-3 rounded-2" tabindex="0">
+          {%for sighting in all_sightings%}
+          <h5>{{sighting.date_seen}} | {{sighting.location}} | {{sighting.num_sasquatches}} sasquatche(s)</h5>
+          <p>reported by: {{sighting.reporter.last_name}}, {{sighting.reporter.first_name}}</p>
+
+          <p> {%if session['user_id'] == sighting.reporter.id %}
+            <a href="/edit_sighting/{{sighting.id}}">EDIT</a> | <a href="/delete_sighting/{{sighting.id}}">DELETE</a> | <a href="/view_sighting/{{sighting.id}}">VIEW</a>
+            {%else%}
+            <a href="/view_sighting/{{sighting.id}}">VIEW</a>  
+            {%endif%}
+        </p>
+          {%endfor%}
+          </div>
+        </div>
+</body>
+</html>
+
